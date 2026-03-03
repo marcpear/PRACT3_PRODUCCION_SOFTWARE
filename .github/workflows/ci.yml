@@ -21,17 +21,17 @@ jobs:
       - name: Install dependencies
         run: uv sync
 
-      - name: Comprobar errores en el código
+      - name: a. Comprobar errores en el código
         run: uv run python3 -m ruff check . --fix
 
-      - name: Formatear el código
+      - name: b. Formatear el código
         run: uv run python3 -m ruff format . --check
 
-      - name: Ejecutar tests unitarios
+      - name: c. Ejecutar tests unitarios
         run: uv run python3 -m pytest ./core/tests/unit
 
-      - name: Ejecutar tests de integración
+      - name: d. Ejecutar tests de integración
         run: uv run python3 -m pytest ./core/tests/integration
 
-      - name: Ejecutar tests de BDD
+      - name: e. Ejecutar tests de BDD
         run: uv run python3 -m pytest ./core/tests/behaviour
