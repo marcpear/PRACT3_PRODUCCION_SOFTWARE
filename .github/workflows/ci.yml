@@ -3,6 +3,8 @@ name: CI
 on:
   push:
     branches: ["**"]
+  pull_request:
+    branches: ["**"]
 
 jobs:
   lint-and-test:
@@ -10,22 +12,23 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - name: Set up Python
-
       - name: Install uv
+        run: curl -LsSf https://astral.sh/uv/install.sh | sh
+
+      - name: Set up Python
+        run: uv python install 3.12
 
       - name: Install dependencies
-
-      - name: Install ruff and mypy
+        run: uv sync
 
       - name: Ruff format
+        run: uv run ruff format --check .
 
       - name: Ruff linter
+        run: uv run ruff check .
 
       - name: Mypy
+        run: uv run mypy .
 
-      - name: Unit tests
-
-      - name: Integration tests
-
-      - name: BDD tests
+      - name: Run All Tests (Unit, Integration, BDD)
+        run: uv run pytest
