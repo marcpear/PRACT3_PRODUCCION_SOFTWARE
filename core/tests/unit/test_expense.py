@@ -34,7 +34,7 @@ def test_negative_amount_raises_error():
             title="Café",
             amount=-5.0,
             description="No debería funcionar",
-            expense_date=date.today()
+            expense_date=date.today(),
         )
 
 
@@ -46,6 +46,6 @@ def test_future_date_raises_error():
             title="Cena",
             amount=20.0,
             description="Gasto del futuro",
-            expense_date=tomorrow
+            expense_date=tomorrow,
         )
     ...
